@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option java_outer_classname = "PatientServiceProto";
+option java_multiple_files = true;
+package com.example.patientservice.grpc;
+
+service PatientService {
+  rpc GetPatientInfo (PatientRequest) returns (PatientResponse);
+  rpc CreatePatient (CreatePatientRequest) returns (PatientResponse);
+  rpc UpdatePatient (UpdatePatientRequest) returns (PatientResponse);
+  rpc DeletePatient (DeletePatientRequest) returns (DeletePatientResponse);
+}
+
+message PatientRequest {
+  int64 id = 1;
+}
+
+message PatientResponse {
+  int64 id = 1;
+  string name = 2;
+  int64 doctor_id = 3;
+}
+
+message CreatePatientRequest {
+  string name = 1;
+  int64 doctor_id = 2;
+}
+
+message UpdatePatientRequest {
+  int64 id = 1;
+  string name = 2;
+  int64 doctor_id = 3;
+}
+
+message DeletePatientRequest {
+  int64 id = 1;
+}
+
+message DeletePatientResponse {
+  bool success = 1;
+}
